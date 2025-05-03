@@ -27,4 +27,8 @@ A modern portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 - Next.js
 - TypeScript
 - Tailwind CSS
-- Sentry for error tracking 
+- Sentry for error tracking
+
+
+
+![image](https://github.com/user-attachments/assets/596ce181-6f4b-4db2-8ce9-04cd6b48a031)
