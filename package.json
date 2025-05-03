@@ -39,7 +39,7 @@
     "@types/react": "^18.3.12",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.16",
+    "eslint-config-next": "^14.2.28",
     "postcss": "^8.4.47",
     "postcss-nesting": "^12.1.5",
     "sass": "^1.80.4",

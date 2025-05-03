@@ -73,74 +73,54 @@ const IconSkeleton = ({ item }: Readonly<{ item: IServiceItem }>) => {
   //   });
   // }, []);
 
+  // Define size patterns
+  const sizePatterns: { [key: number]: number[] } = {
+    5: [1, 2, 3, 2, 1],
+    3: [1, 2, 1],
+  };
+  const pattern = sizePatterns[item.icons.length] || Array(item.icons.length).fill(2); // default to medium
+  const sizeClass = (size: number) => {
+    switch (size) {
+      case 1:
+        return 'h-8 w-8'; // small
+      case 2:
+        return 'h-12 w-12'; // medium
+      case 3:
+        return 'h-16 w-16'; // large
+      default:
+        return 'h-12 w-12';
+    }
+  };
+  const imgSize = (size: number) => {
+    switch (size) {
+      case 1:
+        return 'h-4 w-4';
+      case 2:
+        return 'h-8 w-8';
+      case 3:
+        return 'h-12 w-12';
+      default:
+        return 'h-8 w-8';
+    }
+  };
   return (
     <div className="overflow-hidden h-full relative flex items-center justify-center">
       <div className="flex flex-row flex-shrink-0 justify-center items-center gap-2">
-        <IconContainer className="h-8 w-8 circle-1">
-          <Image
-            src={item.icons[0]}
-            alt={`icon-1`}
-            width={144}
-            height={144}
-            sizes="100%"
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="/images/placeholder.png"
-            className="h-4 w-4 aspect-square"
-          />
-        </IconContainer>
-        <IconContainer className="h-12 w-12 circle-2">
-          <Image
-            src={item.icons[1]}
-            alt={`icon-2`}
-            width={144}
-            height={144}
-            sizes="100%"
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="/images/placeholder.png"
-            className="h-6 w-6 aspect-square"
-          />
-        </IconContainer>
-        <IconContainer className="circle-3">
-          <Image
-            src={item.icons[2]}
-            alt={`icon-3`}
-            width={144}
-            height={144}
-            sizes="100%"
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="/images/placeholder.png"
-            className="h-8 w-8 aspect-square"
-          />
-        </IconContainer>
-        <IconContainer className="h-12 w-12 circle-4">
-          <Image
-            src={item.icons[3]}
-            alt={`icon-4`}
-            width={144}
-            height={144}
-            sizes="100%"
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="/images/placeholder.png"
-            className="h-6 w-6 aspect-square"
-          />
-        </IconContainer>
-        <IconContainer className="h-8 w-8 circle-5">
-          <Image
-            src={item.icons[4]}
-            alt={`icon-5`}
-            width={144}
-            height={144}
-            sizes="100%"
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="/images/placeholder.png"
-            className="h-4 w-4 aspect-square"
-          />
-        </IconContainer>
+        {item.icons.map((icon, idx) => (
+          <IconContainer key={icon} className={`${sizeClass(pattern[idx])} circle-${idx + 1}`}>
+            <Image
+              src={icon}
+              alt={`icon-${idx + 1}`}
+              width={144}
+              height={144}
+              sizes="100%"
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL="/images/placeholder.png"
+              className={`${imgSize(pattern[idx])} aspect-square`}
+            />
+          </IconContainer>
+        ))}
       </div>
 
       <div className="h-40 w-px absolute top-20 m-auto z-40 bg-gradient-to-b from-transparent via-[var(--primaryColor)] to-transparent animate-move">
@@ -262,7 +242,7 @@ export const CardSkeletonContainer = ({
         "rounded-[var(--borderRadius)] z-40 mb-4",
         className,
         showGradient &&
-          "bg-bg-[rgba(40,40,40,0.70)] dark:bg-[rgba(40,40,40,0.70)] [mask-image:radial-gradient(50%_50%_at_50%_50%,white_0%,transparent_100%)]"
+        "bg-bg-[rgba(40,40,40,0.70)] dark:bg-[rgba(40,40,40,0.70)] [mask-image:radial-gradient(50%_50%_at_50%_50%,white_0%,transparent_100%)]"
       )}
     >
       {children}
