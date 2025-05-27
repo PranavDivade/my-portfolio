@@ -5,7 +5,7 @@ const ResumeButton = () => {
   return (
     <Link
       className="app__outlined_btn min-w-[10rem]"
-      href={LocalConfig.values.NEXT_PUBLIC_RESUME_LINK}
+      href={"https://my-portfolio-omega-fawn-89.vercel.app/pranav resume.pdf"}
       target="_blank"
     >
       Download Resume
